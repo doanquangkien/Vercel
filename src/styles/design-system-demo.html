@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MECWISH Design System - Modern Minimal Soft UI</title>
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  
+  <!-- Page Container -->
+  <div class="container" style="padding-top: 3rem; padding-bottom: 3rem;">
+    
+    <!-- Header -->
+    <div class="page-header">
+      <h1 class="page-title">MECWISH Design System</h1>
+      <p class="page-subtitle">Modern Minimal Soft UI with Be Vietnam Pro font - Clean, professional, and production-ready components.</p>
+    </div>
+
+    <!-- Typography Section -->
+    <section class="section">
+      <h2 class="section-title">Typography</h2>
+      <div class="card card-soft">
+        <div class="card-body">
+          <h1>Heading 1 - Bold & Confident</h1>
+          <h2>Heading 2 - Clear Hierarchy</h2>
+          <h3>Heading 3 - Semibold</h3>
+          <h4>Heading 4 - Medium Weight</h4>
+          <h5>Heading 5 - Readable</h5>
+          <h6>Heading 6 - Uppercase</h6>
+          <p class="lead mt-4">This is a lead paragraph with relaxed line height for better readability and modern feel.</p>
+          <p>Regular body text with Be Vietnam Pro font. This design system focuses on clarity, whitespace, and professional aesthetics suitable for SaaS dashboards, admin panels, and modern web applications.</p>
+          <p class="text-sm text-secondary">Small text in secondary color for captions and helper text.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Buttons Section -->
+    <section class="section">
+      <h2 class="section-title">Buttons</h2>
+      <div class="card card-soft">
+        <div class="card-body">
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <button class="btn btn-primary">Primary Button</button>
+            <button class="btn btn-secondary">Secondary</button>
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-soft">Soft UI</button>
+            <button class="btn btn-danger">Danger</button>
+          </div>
+          
+          <div class="d-flex flex-wrap gap-3 mb-4">
+            <button class="btn btn-primary btn-sm">Small</button>
+            <button class="btn btn-primary btn-md">Medium</button>
+            <button class="btn btn-primary btn-lg">Large</button>
+          </div>
+          
+          <div class="d-flex gap-3">
+            <button class="btn btn-primary" disabled>Disabled</button>
+            <button class="btn btn-primary btn-loading">Loading...</button>
+            <button class="btn btn-primary btn-rounded">Rounded</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cards Section -->
+    <section class="section">
+      <h2 class="section-title">Cards</h2>
+      <div class="card-grid">
+        <div class="card card-hover">
+          <div class="card-body">
+            <h3 class="card-title">Default Card</h3>
+            <p class="text-secondary">Clean card with subtle shadow and hover effect.</p>
+          </div>
+        </div>
+        
+        <div class="card card-soft card-hover">
+          <div class="card-body">
+            <h3 class="card-title">Soft UI Card</h3>
+            <p class="text-secondary">Soft neumorphism style - very subtle and elegant.</p>
+          </div>
+        </div>
+        
+        <div class="card card-bordered">
+          <div class="card-body">
+            <h3 class="card-title">Bordered Card</h3>
+            <p class="text-secondary">Simple border without shadow for minimal look.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Cards -->
+    <section class="section">
+      <h2 class="section-title">Stats Cards</h2>
+      <div class="card-grid card-grid-4">
+        <div class="card card-soft">
+          <div class="card-body">
+            <div class="stat-card">
+              <div class="stat-card-label">Total Revenue</div>
+              <div class="stat-card-value">$24,500</div>
+              <div class="stat-card-change positive">
+                ↑ 12% from last month
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card card-soft">
+          <div class="card-body">
+            <div class="stat-card">
+              <div class="stat-card-label">Active Users</div>
+              <div class="stat-card-value">1,245</div>
+              <div class="stat-card-change positive">
+                ↑ 8% increase
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card card-soft">
+          <div class="card-body">
+            <div class="stat-card">
+              <div class="stat-card-label">Orders</div>
+              <div class="stat-card-value">342</div>
+              <div class="stat-card-change negative">
+                ↓ 3% decrease
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card card-soft">
+          <div class="card-body">
+            <div class="stat-card">
+              <div class="stat-card-label">Conversion Rate</div>
+              <div class="stat-card-value">3.24%</div>
+              <div class="stat-card-change positive">
+                ↑ 0.5% growth
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forms Section -->
+    <section class="section">
+      <h2 class="section-title">Form Elements</h2>
+      <div class="card card-soft">
+        <div class="card-body">
+          <form class="form">
+            <div class="form-group">
+              <label class="form-label form-label-required">Full Name</label>
+              <input type="text" class="form-input" placeholder="Enter your name">
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" placeholder="you@example.com">
+              <span class="form-help">We'll never share your email.</span>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Message</label>
+              <textarea class="form-textarea" placeholder="Your message here..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-label">Category</label>
+              <select class="form-select">
+                <option>Select category...</option>
+                <option>General Inquiry</option>
+                <option>Support Request</option>
+                <option>Feature Request</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-checkbox">
+                <input type="checkbox">
+                <span class="form-checkbox-label">I agree to the terms and conditions</span>
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label class="form-switch">
+                <input type="checkbox" checked>
+                <span class="form-switch-label">Enable notifications</span>
+              </label>
+            </div>
+            
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">Submit Form</button>
+              <button type="button" class="btn btn-secondary">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Badges & Alerts -->
+    <section class="section">
+      <h2 class="section-title">Badges & Alerts</h2>
+      <div class="card card-soft">
+        <div class="card-body">
+          <div class="mb-4">
+            <h4 class="mb-3">Badges</h4>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge badge-primary">Primary</span>
+              <span class="badge badge-secondary">Secondary</span>
+              <span class="badge badge-success">Success</span>
+              <span class="badge badge-warning">Warning</span>
+              <span class="badge badge-error">Error</span>
+              <span class="badge badge-info">Info</span>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="mb-3">Alerts</h4>
+            <div class="d-flex flex-column gap-3">
+              <div class="alert alert-success">
+                ✓ Your changes have been saved successfully!
+              </div>
+              <div class="alert alert-warning">
+                ⚠ Please review your information before proceeding.
+              </div>
+              <div class="alert alert-error">
+                ✕ An error occurred. Please try again.
+              </div>
+              <div class="alert alert-info">
+                ℹ New features are available. Check them out!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table Section -->
+    <section class="section">
+      <h2 class="section-title">Data Table</h2>
+      <div class="table-container">
+        <table class="table table-sortable">
+          <thead>
+            <tr>
+              <th class="table-checkbox-col">
+                <input type="checkbox" class="table-checkbox">
+              </th>
+              <th>Customer</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Amount</th>
+              <th class="table-cell-right">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-checkbox-col">
+                <input type="checkbox" class="table-checkbox">
+              </td>
+              <td>
+                <div class="table-avatar">
+                  <div class="avatar avatar-md">JD</div>
+                  <div class="table-avatar-info">
+                    <div class="table-avatar-name">John Doe</div>
+                    <div class="table-avatar-meta">ID: #1234</div>
+                  </div>
+                </div>
+              </td>
+              <td>john@example.com</td>
+              <td><span class="table-badge table-badge-success">Active</span></td>
+              <td>$1,234.56</td>
+              <td class="table-cell-right">
+                <div class="table-actions">
+                  <button class="table-action-btn">View</button>
+                  <button class="table-action-btn">Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-checkbox-col">
+                <input type="checkbox" class="table-checkbox">
+              </td>
+              <td>
+                <div class="table-avatar">
+                  <div class="avatar avatar-md">AS</div>
+                  <div class="table-avatar-info">
+                    <div class="table-avatar-name">Alice Smith</div>
+                    <div class="table-avatar-meta">ID: #1235</div>
+                  </div>
+                </div>
+              </td>
+              <td>alice@example.com</td>
+              <td><span class="table-badge table-badge-warning">Pending</span></td>
+              <td>$987.65</td>
+              <td class="table-cell-right">
+                <div class="table-actions">
+                  <button class="table-action-btn">View</button>
+                  <button class="table-action-btn">Edit</button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="table-checkbox-col">
+                <input type="checkbox" class="table-checkbox">
+              </td>
+              <td>
+                <div class="table-avatar">
+                  <div class="avatar avatar-md">BJ</div>
+                  <div class="table-avatar-info">
+                    <div class="table-avatar-name">Bob Johnson</div>
+                    <div class="table-avatar-meta">ID: #1236</div>
+                  </div>
+                </div>
+              </td>
+              <td>bob@example.com</td>
+              <td><span class="table-badge table-badge-error">Inactive</span></td>
+              <td>$543.21</td>
+              <td class="table-cell-right">
+                <div class="table-actions">
+                  <button class="table-action-btn">View</button>
+                  <button class="table-action-btn">Edit</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

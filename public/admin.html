@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MECWISH Admin - Dashboard</title>
+
+  <!-- Main CSS (Vite will process this) -->
+  <link rel="stylesheet" href="../src/styles/main.css" />
+
+  <!-- AlpineJS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+</head>
+
+<body class="bg-gray-50" x-data="adminApp">
+
+  <!-- ================= LOGIN SCREEN ================= -->
+  <div
+    x-show="!isAuthenticated"
+    x-cloak
+    class="min-h-screen flex items-center justify-center p-4"
+  >
+    <div class="w-full max-w-md bg-white rounded-xl shadow p-6">
+      <div class="text-center mb-6">
+        <h1 class="text-3xl font-bold text-primary mb-2">MECWISH Admin</h1>
+        <p class="text-gray-500">Đăng nhập để quản trị hệ thống</p>
+      </div>
+
+      <form @submit.prevent="handleLogin" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium mb-1">Email</label>
+          <input
+            type="email"
+            x-model="loginForm.email"
+            class="w-full px-3 py-2 border rounded-lg"
+            placeholder="admin@mecwish.com"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium mb-1">Mật khẩu</label>
+          <input
+            type="password"
+            x-model="loginForm.password"
+            class="w-full px-3 py-2 border rounded-lg"
+            placeholder="••••••••"
+            required
+          />
+        </div>
+
+        <div
+          x-show="loginError"
+          class="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600"
+          x-text="loginError"
+        ></div>
+
+        <button
+          type="submit"
+          class="w-full py-2 rounded-lg bg-blue-600 text-white font-medium"
+          :disabled="isLoggingIn"
+        >
+          <span x-show="!isLoggingIn">Đăng nhập</span>
+          <span x-show="isLoggingIn">Đang đăng nhập...</span>
+        </button>
+
+        <div class="text-xs text-center text-gray-400">
+          Demo: admin@mecwish.com / admin123
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= ADMIN LAYOUT ================= -->
+  <div x-show="isAuthenticated" x-cloak class="min-h-screen flex">
+
+    <!-- Sidebar -->
+    <aside class="w-64 bg-white border-r flex flex-col">
+      <div class="p-6 border-b">
+        <h1 class="text-2xl font-bold text-primary">MECWISH</h1>
+        <p class="text-xs text-gray-500">Admin Dashboard</p>
+      </div>
+
+      <nav class="flex-1 p-4 space-y-1">
+        <a href="#/" class="nav-item" :class="{ active: currentRoute === '/' }">Dashboard</a>
+        <a href="#/products" class="nav-item" :class="{ active: currentRoute === '/products' }">Sản phẩm</a>
+        <a href="#/orders" class="nav-item" :class="{ active: currentRoute === '/orders' }">Đơn hàng</a>
+        <a href="#/customers" class="nav-item" :class="{ active: currentRoute === '/customers' }">Khách hàng</a>
+        <a href="#/pools" class="nav-item" :class="{ active: currentRoute === '/pools' }">Kho Key</a>
+        <a href="#/settings" class="nav-item" :class="{ active: currentRoute === '/settings' }">Cài đặt</a>
+      </nav>
+
+      <div class="p-4 border-t flex items-center justify-between">
+        <div>
+          <div class="text-sm font-medium" x-text="user?.name || 'Admin'"></div>
+          <div class="text-xs text-gray-500" x-text="user?.email"></div>
+        </div>
+        <button @click="handleLogout" class="text-sm text-red-500">Logout</button>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="flex-1 p-8">
+      <div id="app-content">
+        <h2 class="text-2xl font-bold mb-2">Đang tải...</h2>
+        <p class="text-gray-500">Vui lòng chờ trong giây lát</p>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ================= MAIN ENTRY ================= -->
+  <script type="module" src="../src/main.js"></script>
+
+</body>
+</html>
