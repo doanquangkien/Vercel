@@ -2,9 +2,17 @@ import Kernel from './core/kernel/Kernel.js';
 import EventBus from './core/events/EventBus.js';
 import AuthManager from './core/security/AuthManager.js';
 
-// Khởi tạo Alpine.js global data
-document.addEventListener('alpine:init', () => {
+console.log('[MECWISH] Starting application initialization...');
+
+// Function to initialize Alpine components
+function initializeAlpineComponents() {
+  console.log('[MECWISH] Initializing Alpine components...');
   
+  if (typeof Alpine === 'undefined') {
+    console.error('[MECWISH] Alpine.js is not loaded!');
+    return false;
+  }
+
   // Admin App Component
   Alpine.data('adminApp', () => ({
     // State
@@ -298,7 +306,30 @@ document.addEventListener('alpine:init', () => {
     }
   }));
 
-});
+  console.log('[MECWISH] Alpine components registered successfully');
+  return true;
+}
+
+// Wait for Alpine.js to be ready
+if (typeof Alpine !== 'undefined') {
+  // Alpine is already loaded (synchronous script)
+  console.log('[MECWISH] Alpine.js detected, initializing immediately');
+  initializeAlpineComponents();
+} else {
+  // Wait for Alpine to load
+  console.log('[MECWISH] Waiting for Alpine.js to load...');
+  document.addEventListener('alpine:init', () => {
+    console.log('[MECWISH] Alpine.js loaded, initializing components');
+    initializeAlpineComponents();
+  });
+  
+  // Fallback timeout
+  setTimeout(() => {
+    if (typeof Alpine === 'undefined') {
+      console.error('[MECWISH] Alpine.js failed to load within timeout');
+    }
+  }, 3000);
+}
 
 // Export global App reference
 window.App = {
@@ -306,4 +337,4 @@ window.App = {
   eventBus: EventBus
 };
 
-console.log('[MECWISH] Application loaded');
+console.log('[MECWISH] Application script loaded');
