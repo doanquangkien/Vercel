@@ -6,23 +6,29 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  root: './public',
-  publicDir: '../public/assets',
+  // Root để mặc định là thư mục gốc (nơi chứa index.html và admin.html sau khi di chuyển)
+  root: '.', 
+  
+  // Public dir là nơi chứa ảnh tĩnh
+  publicDir: 'public',
+
   build: {
-    outDir: '../dist',
+    outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: path.resolve(__dirname, 'public/index.html'),
-        admin: path.resolve(__dirname, 'public/admin.html')
+        main: path.resolve(__dirname, 'index.html'), // File gốc đã dời ra ngoài
+        admin: path.resolve(__dirname, 'admin.html') // File admin đã dời ra ngoài
       }
     }
   },
+  
   server: {
     port: 3000,
     open: '/admin.html',
     cors: true
   },
+  
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
