@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MECWISH Admin - Test Version</title>
+  
+  <!-- Alpine.js from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.0/dist/cdn.min.js"></script>
+  
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    [x-cloak] { display: none !important; }
+    
+    .container { max-width: 400px; margin: 50px auto; padding: 20px; }
+    .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 24px; }
+    .title { font-size: 24px; font-weight: 700; color: #3b82f6; margin-bottom: 8px; text-align: center; }
+    .subtitle { color: #6b7280; margin-bottom: 24px; text-align: center; }
+    .form-group { margin-bottom: 16px; }
+    .label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+    .input { width: 100%; padding: 8px 12px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; }
+    .input:focus { outline: none; border-color: #3b82f6; }
+    .btn { width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; }
+    .btn:hover { background: #2563eb; }
+    .btn:disabled { background: #9ca3af; cursor: not-allowed; }
+    .error { padding: 12px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #dc2626; font-size: 14px; margin-bottom: 16px; }
+    .hint { font-size: 12px; color: #9ca3af; text-align: center; margin-top: 16px; }
+    .dashboard { background: #f9fafb; min-height: 100vh; display: flex; }
+    .sidebar { width: 250px; background: white; border-right: 1px solid #e5e7eb; padding: 24px; }
+    .sidebar-title { font-size: 20px; font-weight: 700; color: #3b82f6; margin-bottom: 24px; }
+    .nav-item { display: block; padding: 10px 16px; color: #4b5563; text-decoration: none; border-radius: 8px; margin-bottom: 4px; }
+    .nav-item:hover { background: #f3f4f6; }
+    .nav-item.active { background: #eff6ff; color: #3b82f6; font-weight: 500; }
+    .main-content { flex: 1; padding: 32px; }
+    .header { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+    .description { color: #6b7280; margin-bottom: 24px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .stat-card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .stat-label { font-size: 14px; color: #6b7280; margin-bottom: 8px; }
+    .stat-value { font-size: 32px; font-weight: 700; color: #111827; }
+    .logout-btn { padding: 8px 16px; background: #ef4444; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 14px; margin-top: 24px; }
+    .logout-btn:hover { background: #dc2626; }
+  </style>
+</head>
+
+<body x-data="testApp" x-init="init()">
+  
+  <!-- Login Screen -->
+  <div x-show="!isAuthenticated" x-cloak>
+    <div class="container">
+      <div class="card">
+        <h1 class="title">MECWISH Admin</h1>
+        <p class="subtitle">Test Version - Simple Alpine.js App</p>
+        
+        <div x-show="loginError" class="error" x-text="loginError"></div>
+        
+        <form @submit.prevent="handleLogin">
+          <div class="form-group">
+            <label class="label">Email</label>
+            <input 
+              type="email" 
+              class="input" 
+              x-model="email" 
+              placeholder="admin@mecwish.com"
+              required
+            />
+          </div>
+          
+          <div class="form-group">
+            <label class="label">Password</label>
+            <input 
+              type="password" 
+              class="input" 
+              x-model="password" 
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          
+          <button type="submit" class="btn" :disabled="isLoading">
+            <span x-show="!isLoading">Đăng nhập</span>
+            <span x-show="isLoading">Đang đăng nhập...</span>
+          </button>
+        </form>
+        
+        <div class="hint">Demo: admin@mecwish.com / admin123</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard -->
+  <div x-show="isAuthenticated" x-cloak class="dashboard">
+    <aside class="sidebar">
+      <h2 class="sidebar-title">MECWISH</h2>
+      <nav>
+        <a href="#" class="nav-item active">Dashboard</a>
+        <a href="#" class="nav-item">Products</a>
+        <a href="#" class="nav-item">Orders</a>
+        <a href="#" class="nav-item">Customers</a>
+        <a href="#" class="nav-item">Settings</a>
+      </nav>
+      <button class="logout-btn" @click="handleLogout">Đăng xuất</button>
+    </aside>
+    
+    <main class="main-content">
+      <h1 class="header">Dashboard</h1>
+      <p class="description">Chào mừng trở lại, <span x-text="userName"></span>!</p>
+      
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Orders</div>
+          <div class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Products</div>
+          <div class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Customers</div>
+          <div class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Revenue</div>
+          <div class="stat-value">0đ</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Alpine.js Component -->
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('testApp', () => ({
+        // State
+        isAuthenticated: false,
+        userName: 'Admin',
+        email: 'admin@mecwish.com',
+        password: 'admin123',
+        isLoading: false,
+        loginError: '',
+        
+        // Initialize
+        init() {
+          console.log('[TestApp] Initialized');
+          // Check if already logged in
+          const savedAuth = localStorage.getItem('mecwish_auth');
+          if (savedAuth) {
+            try {
+              const auth = JSON.parse(savedAuth);
+              this.isAuthenticated = true;
+              this.userName = auth.userName || 'Admin';
+            } catch (e) {
+              console.error('Failed to parse saved auth:', e);
+            }
+          }
+        },
+        
+        // Login handler
+        async handleLogin() {
+          this.isLoading = true;
+          this.loginError = '';
+          
+          // Simulate API call
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          
+          if (this.email === 'admin@mecwish.com' && this.password === 'admin123') {
+            this.isAuthenticated = true;
+            this.userName = 'Admin User';
+            localStorage.setItem('mecwish_auth', JSON.stringify({
+              userName: this.userName,
+              email: this.email
+            }));
+            console.log('[TestApp] Login successful');
+          } else {
+            this.loginError = 'Email hoặc mật khẩu không đúng';
+          }
+          
+          this.isLoading = false;
+        },
+        
+        // Logout handler
+        handleLogout() {
+          if (confirm('Bạn có chắc muốn đăng xuất?')) {
+            this.isAuthenticated = false;
+            this.email = 'admin@mecwish.com';
+            this.password = 'admin123';
+            localStorage.removeItem('mecwish_auth');
+            console.log('[TestApp] Logged out');
+          }
+        }
+      }));
+    });
+    
+    console.log('[TestApp] Script loaded');
+  </script>
+
+</body>
+</html>
